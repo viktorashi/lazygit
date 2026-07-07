@@ -18,7 +18,7 @@ func NewAmendHelper(
 }
 
 func (self *AmendHelper) AmendHead() error {
-	cmdObj := self.c.Git().Commit.AmendHeadCmdObj()
+	cmdObj := self.c.Git().Commit.AmendHeadCmdObj().UsePty()
 	self.c.LogAction(self.c.Tr.Actions.AmendCommit)
 	return self.gpg.WithGpgHandling(cmdObj, git_commands.CommitGpgSign, self.c.Tr.AmendingStatus, nil, nil)
 }

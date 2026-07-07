@@ -485,7 +485,7 @@ func (self *LocalCommitsController) handleReword(summary string, description str
 	selectedIdx := self.c.Contexts().LocalCommits.GetSelectedLineIdx()
 	if models.IsHeadCommit(commits, selectedIdx) {
 		// we've selected the top commit so no rebase is required
-		return self.c.Helpers().GPG.WithGpgHandling(self.c.Git().Commit.RewordLastCommit(summary, description),
+		return self.c.Helpers().GPG.WithGpgHandling(self.c.Git().Commit.RewordLastCommit(summary, description).UsePty(),
 			git_commands.CommitGpgSign,
 			self.c.Tr.RewordingStatus, nil, nil)
 	}
